@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Anniversary ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            z-index: 5;
+        }
+
+        /* Envelope */
+        .envelope {
+            width: 280px;
+            height: 180px;
+            background: white;
+            margin: auto;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            transition: 0.5s;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        /* Envelope flap */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            border-top: 100px solid #ffb6c1;
+        }
+
+        /* Heart */
+        .heart {
+            position: absolute;
+            top: 65px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 45px;
+
+            z-index: 3;
+
+            animation: pulse 1s infinite;
+        }
+
+        .tap {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Anniversary Card */
+        .card {
+            display: none;
+
+            background: rgba(255,255,255,0.96);
+
+            color: #444;
+
+            padding: 30px 25px;
+
+            border-radius: 25px;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+
+            animation: openCard 1s ease;
+        }
+
+        .card h1 {
+            color: #e91e63;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+
+        /* Photo */
+        .photo {
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border: 6px solid #ff4081;
+
+            margin: 15px auto;
+
+            display: block;
+        }
+
+        /* Text */
+        .card p {
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .love {
+            color: #e91e63;
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            margin-top: 20px;
+        }
+
+        /* Button */
+        button {
+            margin-top: 20px;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 25px;
+
+            background: #e91e63;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            background: #c2185b;
+        }
+
+        /* Floating Hearts */
+        .heart-float {
+            position: absolute;
+
+            bottom: -30px;
+
+            animation: float 6s linear forwards;
+
+            z-index: 1;
+        }
+
+        /* Fireworks */
+        .firework {
+            position: absolute;
+
+            font-size: 25px;
+
+            animation: explode 1s ease-out forwards;
+
+            z-index: 10;
+        }
+
+        /* Animations */
+
+        @keyframes pulse {
+
+            0%,100% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.2);
+            }
+
+        }
+
+        @keyframes openCard {
+
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotateY(90deg);
+            }
+to {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+            }
+
+        }
+
+        @keyframes float {
+
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+
+        }
+
+        @keyframes explode {
+
+            0% {
+                transform: scale(0.3);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- Background Music -->
+
+    <audio id="music" loop>
+
+        <source src="music.mp3" type="audio/mpeg">
+
+        Your browser does not support audio.
+
+    </audio>
+
+
+
+    <div class="container">
+
+
+        <!-- Envelope -->
+
+        <div
+            class="envelope"
+            id="envelope"
+            onclick="openLetter()"
+        >
+
+            <div class="heart">
+                ❤️
+            </div>
+
+        </div>
+
+
+        <div
+            class="tap"
+            id="tap"
+        >
+            Tap the envelope 💌
+        </div>
+
+
+
+        <!-- Anniversary Card -->
+
+        <div
+            class="card"
+            id="card"
+        >
+
+
+            <h1>
+                Happy Anniversary ❤️
+            </h1>
+
+
+            <!-- Your Photo -->
+
+            <img
+                src="photo.jpg"
+                class="photo"
+                alt="Our Photo"
+            >
+
+
+            <p>
+
+                To my special person ❤️
+
+                <br><br>
+
+                Another beautiful year has passed,
+                but every moment with you is still
+                something I will always treasure.
+
+                <br><br>
+
+                Thank you for every smile,
+                every memory,
+                and every beautiful moment.
+
+                <br><br>
+
+                I hope our story continues to become
+                more beautiful with every passing year.
+
+                <br><br>
+
+                May we create many more
+                beautiful memories together. ❤️
+
+            </p>
+
+
+            <div class="love">
+
+                I Love You ❤️
+
+            </div>
+
+
+            <button onclick="fireworks()">
+
+                One More Surprise 🎆
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =========================
+           OPEN ENVELOPE
+        ========================= */
+
+        function openLetter() {
+
+
+            /* Hide envelope */
+
+            document.getElementById("envelope").style.display =
+                "none";
+
+
+            /* Hide text */
+
+            document.getElementById("tap").style.display =
+                "none";
+
+
+            /* Show Anniversary Card */
+
+            document.getElementById("card").style.display =
+                "block";
+
+
+            /* Start Music */
+
+            const music =
+                document.getElementById("music");
+
+
+            music.volume = 0.7;
+
+
+            music.play().catch(function(error) {
+
+                console.log(
+                    "Music could not start:",
+                    error
+                );
+
+            });
+
+
+            /* Start Floating Hearts */
+
+            createHearts();
+
+        }
+
+
+
+        /* =========================
+           FLOATING HEARTS
+        ========================= */
+
+        function createHearts() {
+
+
+            setInterval(function() {
+
+
+                let heart =
+                    document.createElement("div");
+
+
+                heart.className =
+                    "heart-float";
+
+
+                heart.innerHTML =
+                    "❤️";
+
+
+                heart.style.left =
+                    Math.random() * 100 + "vw";
+
+
+                heart.style.fontSize =
+                    (15 + Math.random() * 30) + "px";
+
+
+                heart.style.animationDuration =
+                    (4 + Math.random() * 4) + "s";
+
+
+                document.body.appendChild(heart);
+                setTimeout(function() {
+
+                    heart.remove();
+
+                }, 7000);
+
+
+            }, 400);
+
+        }
+
+
+
+        /* =========================
+           FIREWORKS
+        ========================= */
+
+        function fireworks() {
+
+
+            for (
+                let i = 0;
+                i < 40;
+                i++
+            ) {
+
+
+                let fire =
+                    document.createElement("div");
+
+
+                fire.className =
+                    "firework";
+
+
+                fire.innerHTML =
+                    ["✨","💖","❤️","⭐","💕"]
+                    [Math.floor(Math.random() * 5)];
+
+
+                fire.style.left =
+                    Math.random() * 100 + "vw";
+
+
+                fire.style.top =
+                    Math.random() * 100 + "vh";
+
+
+                fire.style.animationDelay =
+                    Math.random() + "s";
+
+
+                document.body.appendChild(fire);
+
+
+                setTimeout(function() {
+
+                    fire.remove();
+
+                }, 2000);
+
+            }
+
+        }
+
+
+    </script>
+
+</body>
+</html>
